@@ -44,6 +44,7 @@ Found a bug or need help?
 Pull requests are welcome! Please see:
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
+
 Please open an issue first to discuss changes.
 
 ---
