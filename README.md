@@ -36,8 +36,15 @@ A lightweight WordPress plugin that creates a custom login page with AJAX valida
 ## License 📄
 This plugin is licensed under the [MIT License](LICENSE).
 
+## Support ❓
+Found a bug or need help?  
+[Open an Issue](https://github.com/Awais-857/instant-login/issues)
+
 ## Contributing 🤝
-Pull requests are welcome! Please open an issue first to discuss changes.
+Pull requests are welcome! Please see:
+- [Contributing Guidelines](CONTRIBUTING.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+Please open an issue first to discuss changes.
 
 ---
 Created by [Awais Iqbal](https://github.com/Awais-857)
