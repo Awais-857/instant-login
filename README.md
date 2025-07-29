@@ -45,7 +45,7 @@ Pull requests are welcome! Please see:
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
 
-Please open an issue first to discuss changes.
+Please [Open an Issue](https://github.com/Awais-857/instant-login/issues) first to discuss changes.
 
 ---
 Created by [Awais Iqbal](https://github.com/Awais-857)
