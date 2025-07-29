@@ -5,21 +5,22 @@ jobs:
   wpcs:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.4'
-        tools: composer:v2
+      - name: Checkout code
+        uses: actions/checkout@v4
         
-    - name: Install dependencies
-      run: |
-        composer require squizlabs/php_codesniffer
-        composer require wp-coding-standards/wpcs
-        composer require dealerdirect/phpcodesniffer-composer-installer
-        phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs
-        
-    - name: Run WordPress Coding Standards
-      run: phpcs --standard=WordPress --extensions=php --ignore=*/vendor/* .
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          
+      - name: Install dependencies
+        run: |
+          composer global require squizlabs/php_codesniffer
+          composer global require wp-coding-standards/wpcs
+          composer global require dealerdirect/phpcodesniffer-composer-installer
+          echo "$HOME/.composer/vendor/bin" >> $GITHUB_PATH
+          
+      - name: Run WordPress Coding Standards
+        run: |
+          phpcs -i
+          phpcs --standard=WordPress --extensions=php --ignore=*/vendor/* .
