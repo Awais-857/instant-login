@@ -1,7 +1,6 @@
 # Instant Login WordPress Plugin
 
 [![PHP Syntax Check](https://github.com/Awais-857/instant-login/actions/workflows/php-checks.yml/badge.svg)](https://github.com/Awais-857/instant-login/actions/workflows/php-checks.yml)
-[![WordPress Coding Standards](https://github.com/Awais-857/instant-login/actions/workflows/wpcs-checks.yml/badge.svg)](https://github.com/Awais-857/instant-login/actions/workflows/wpcs-checks.yml)
 
 ![Login Page](screenshots/login_page.png)
 ![Settings Page](screenshots/settings_page.png)
@@ -40,12 +39,11 @@ A lightweight WordPress plugin that creates a custom login page with AJAX valida
 - PHP 7.0+
 
 ## Continuous Integration 🔄
-This plugin uses GitHub Actions for automated quality checks:
+This plugin uses GitHub Actions for automated quality checks. All PHP files are validated for syntax errors on every commit.
 
 | Check | Status | Description |
 |-------|--------|-------------|
 | PHP Syntax | [![PHP Syntax Check](https://github.com/Awais-857/instant-login/actions/workflows/php-checks.yml/badge.svg)](https://github.com/Awais-857/instant-login/actions/workflows/php-checks.yml) | Validates all PHP files for syntax errors |
-| WordPress Coding Standards | [![WordPress Coding Standards](https://github.com/Awais-857/instant-login/actions/workflows/wpcs-checks.yml/badge.svg)](https://github.com/Awais-857/instant-login/actions/workflows/wpcs-checks.yml) | Ensures code follows WordPress best practices |
 
 ## Security 🔒
 - Nonce verification on all AJAX requests
