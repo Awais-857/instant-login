@@ -29,7 +29,7 @@ A lightweight WordPress plugin that creates a custom login page with AJAX valida
 3. Save changes
 
 ## Customization 🎨
-- **Logo/Header**: Edit `templates/custom-login-template.php`
+- **Structure**: Edit `templates/custom-login-template.php`
 - **Styling**: Modify `assets/css/style.css`
 - **Behavior**: Edit `assets/js/script.js`
 - **PHP Logic**: Modify `includes/class-instant-login.php`
@@ -37,13 +37,6 @@ A lightweight WordPress plugin that creates a custom login page with AJAX valida
 ## Requirements 📋
 - WordPress 5.6+
 - PHP 7.0+
-
-## Continuous Integration 🔄
-This plugin uses GitHub Actions for automated quality checks. All PHP files are validated for syntax errors on every commit.
-
-| Check | Status | Description |
-|-------|--------|-------------|
-| PHP Syntax | [![PHP Syntax Check](https://github.com/Awais-857/instant-login/actions/workflows/php-checks.yml/badge.svg)](https://github.com/Awais-857/instant-login/actions/workflows/php-checks.yml) | Validates all PHP files for syntax errors |
 
 ## Security 🔒
 - Nonce verification on all AJAX requests
