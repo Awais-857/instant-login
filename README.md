@@ -14,7 +14,6 @@ A lightweight WordPress plugin that creates a custom login page with AJAX valida
 - Optional redirect after successful login
 - Clean, responsive design
 - Easy-to-use settings page
-- Continuous integration checks for code quality
 - Secure nonce verification and input sanitization
 
 ## Installation 🚀
