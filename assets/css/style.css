@@ -2,110 +2,253 @@
  * Instant Login - Stylesheet
  * 
  * Contains all styling for the Instant Login plugin interface.
- * Includes header styles, form layout, button effects, and message formatting.
+ * 
+ * Features:
+ * - Modern, responsive login form design
+ * - Floating label form fields with smooth transitions
+ * - Password visibility toggle functionality
+ * - AJAX loading states with spinner animation
+ * - Success/error message formatting
+ * - Cross-browser compatible focus states
+ * 
+ * Color variables are defined in :root for easy customization
+ * All form elements feature consistent border-radius and focus states
+ * 
+ * @package Instant_Login
  */
 
-/* ========================
-   HEADER STYLES 
-   ======================== */
-.instant-login-header {
-    background: #2c3e50; /* Dark blue header */
-    padding: 20px 0;
-    text-align: left;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.instant-login-header h1 {
-    color: white;
-    margin: 0;
-    padding-left: 20px;
-    font-size: 24px;
-}
+/* FONTS */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
 /* ========================
-   FORM CONTAINER 
+   CSS VARIABLES (CUSTOM PROPERTIES)
    ======================== */
-.instant-login-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.instant-login-container {
-    max-width: 400px;
-    width: 100%;
-    margin: auto;
-    padding: 30px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    background: white;
+:root {
+  --color-background: #f0f0f0;
+  --color-text: #333;
+  --color-border: #ccc;
+  --color-placeholder: #777;
+  --color-primary: #007bff;
+  --color-primary-hover: #0056b3;
+  --color-link: #1a73e8;
+  --color-divider: #ddd;
+  --color-social-hover: #f0f0f0;
+  --color-floating-label: #5f6368;
+  --color-white: #fff;
 }
 
 /* ========================
-   FORM ELEMENTS 
+   BASE STYLES & RESETS
    ======================== */
-.instant-form-group {
-    margin-bottom: 20px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "DM Sans", sans-serif;
 }
 
-.instant-form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
-#instant-login-btn {
-    background: #3498db;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-    transition: background 0.3s;
+/* ========================
+   LAYOUT CONTAINERS
+   ======================== */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
 }
 
-#instant-login-btn:hover {
-    background: #2980b9;
+.form-container {
+  background-color: var(--color-white);
+  padding: 50px 40px;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+/* ========================
+   FORM HEADER
+   ======================== */
+.form-header {
+  margin-bottom: 30px;
+}
+
+.form-header h1 {
+  font-size: 32px;
+  text-align: center;
+}
+
+/* ========================
+   FORM ELEMENTS
+   ======================== */
+.form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+}
+
+.input-field {
+  height: 48px;
+  padding-inline: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px !important;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: var(--color-primary) !important; /* Force color change */
+  outline: none !important; /* Remove default outline */
+  box-shadow: none !important; /* Remove any shadow */
+}
+
+/* Floating label pattern */
+.floating-label {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  color: var(--color-placeholder);
+  background-color: var(--color-white);
+  padding-inline: 6px;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.input-field:focus ~ .floating-label,
+.input-field:not(:placeholder-shown) ~ .floating-label {
+  top: 0;
+  left: 8px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--color-primary);
+}
+
+.input-field:not(:focus):not(:placeholder-shown) ~ .floating-label {
+  color: var(--color-floating-label);
+}
+
+/* Password visibility toggle */
+.eye-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  display: flex;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 2; /* Ensure it's above the input field */
+}
+
+.eye-icon svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-placeholder);
+}
+
+/* Form buttons */
+.form-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  background: none;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding-inline: 8px;
+}
+
+.form-btn--submit {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  border-radius: 6px !important; /* Force border radius */
+}
+
+.form-btn--submit:hover {
+  background-color: var(--color-primary-hover);
 }
 
 /* ========================
    SPINNER (LOADING INDICATOR)
    ======================== */
-#instant-login-btn .spinner {
-    display: none;
-    width: 15px;
-    height: 15px;
-    border: 2px solid rgba(255,255,255,0.3);
-    border-radius: 50%;
-    border-top-color: white;
-    animation: spin 1s ease-in-out infinite;
-    margin-left: 5px;
-    vertical-align: middle;
+.form-btn--submit .spinner {
+  display: none;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* ========================
    MESSAGE STYLES 
    ======================== */
 #instant-login-message {
-    margin-top: 15px;
-    padding: 10px;
-    border-radius: 4px;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 4px;
 }
 
 .success { 
-    background: #d4edda; 
-    color: #155724;
+  background: #d4edda; 
+  color: #155724;
 }
 .error { 
-    background: #f8d7da; 
-    color: #721c24;
+  background: #f8d7da; 
+  color: #721c24;
+}
+
+/* ========================
+   RESPONSIVE DESIGN
+   ======================== */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 40px 30px;
+  }
+}
+
+/* ========================
+   BROWSER-SPECIFIC FIXES
+   ======================== */
+/* Chrome autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  border-radius: 6px !important;
+}
+
+/* Remove default focus styles from browsers */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+  box-shadow: none;
 }
