@@ -2,7 +2,7 @@
 Contributors: Awais Iqbal
 Tags: login, redirect, secure, custom login
 Requires at least: 5.6
-Tested up to: 6.5
+Tested up to: 6.8
 Stable tag: 1.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
@@ -28,9 +28,6 @@ Creates a custom login page with AJAX validation upon activation. Features inclu
    - Enter URL to redirect after successful login
 
 == Frequently Asked Questions ==
-= How do I change the header text? =
-Edit the `h1` element in `/templates/custom-login-template.php`
-
 = Can I customize the styles? =
 Yes! Modify `/assets/css/style.css`
 
