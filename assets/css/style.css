@@ -9,7 +9,6 @@
  * - Password visibility toggle functionality
  * - AJAX loading states with spinner animation
  * - Success/error message formatting
- * - Cross-browser compatible focus states
  * 
  * Color variables are defined in :root for easy customization
  * 
@@ -23,17 +22,14 @@
    CSS VARIABLES (CUSTOM PROPERTIES)
    ======================== */
 :root {
-  --color-background: #f0f0f0;
-  --color-text: #333;
-  --color-border: #ccc;
-  --color-placeholder: #777;
+  --color-background: #e1e1e1;
+	--color-form: #ffffff;
+	--color-heading: #000000;
+  --color-border: #757575;
+  --color-placeholder: #757575;
+	--color-text: #007bff;
   --color-primary: #007bff;
-  --color-primary-hover: #0056b3;
-  --color-link: #1a73e8;
-  --color-divider: #ddd;
-  --color-social-hover: #f0f0f0;
-  --color-floating-label: #5f6368;
-  --color-white: #fff;
+  --color-btn-hover: #278ffc;
 }
 
 /* ========================
@@ -47,7 +43,7 @@
 }
 
 body {
-  background-color: var(--color-background);
+  background-color: var(--color-background) !important;
   color: var(--color-text);
 }
 
@@ -58,17 +54,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 90vh;
   padding: 20px;
 }
 
 .form-container {
-  background-color: var(--color-white);
+  background-color: var(--color-form) !important;
   padding: 50px 40px;
   width: 100%;
-  max-width: 450px;
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
+  max-width: 400px;
+	box-shadow: 0px 0px 25px 0px rgb(150 150 150 / 50%) !important;
 }
 
 /* ========================
@@ -81,6 +76,7 @@ body {
 .form-header h1 {
   font-size: 32px;
   text-align: center;
+	color: var(--color-heading) !important;
 }
 
 /* ========================
@@ -100,27 +96,29 @@ body {
 .input-field {
   height: 48px;
   padding-inline: 14px;
-  border: 1px solid var(--color-border);
-  border-radius: 6px !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 50px !important;
+	background-color: var(--color-form) !important;
   width: 100%;
   outline: none;
   transition: border-color 0.3s ease;
+	color: var(--color-text) !important;
 }
 
 .input-field:focus {
-  border-color: var(--color-primary) !important; /* Force color change */
-  outline: none !important; /* Remove default outline */
-  box-shadow: none !important; /* Remove any shadow */
+  border-color: var(--color-primary) !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* Floating label pattern */
 .floating-label {
   position: absolute;
   top: 50%;
-  left: 8px;
+  left: 15px;
   transform: translateY(-50%);
   color: var(--color-placeholder);
-  background-color: var(--color-white);
+  background-color: var(--color-form);
   padding-inline: 6px;
   transition: all 0.3s ease;
   pointer-events: none;
@@ -129,14 +127,15 @@ body {
 .input-field:focus ~ .floating-label,
 .input-field:not(:placeholder-shown) ~ .floating-label {
   top: 0;
-  left: 8px;
+  left: 12px;
   transform: translateY(-50%);
   font-size: 12px;
   color: var(--color-primary);
 }
 
-.input-field:not(:focus):not(:placeholder-shown) ~ .floating-label {
-  color: var(--color-floating-label);
+.input-field:not(:focus):not(:placeholder-shown) ~ .floating-label,
+.input-field:not(:focus):not(:placeholder-shown) ~ .eye-icon svg{
+  color: var(--color-placeholder);
 }
 
 /* Password visibility toggle */
@@ -147,7 +146,7 @@ body {
   display: flex;
   transform: translateY(-50%);
   cursor: pointer;
-  z-index: 2; /* Ensure it's above the input field */
+  z-index: 2;
 }
 
 .eye-icon svg {
@@ -156,6 +155,10 @@ body {
   color: var(--color-placeholder);
 }
 
+.input-field:focus ~ .eye-icon svg,
+.input-field:not(:placeholder-shown) ~ .eye-icon svg {
+	color: var(--color-primary);
+}
 /* Form buttons */
 .form-btn {
   display: flex;
@@ -166,23 +169,22 @@ body {
   background: none;
   border: none;
   outline: none;
-  border-radius: 6px;
   cursor: pointer;
   padding-inline: 8px;
 }
 
 .form-btn--submit {
   background-color: var(--color-primary);
-  color: var(--color-white);
+  color: var(--color-form);
   font-size: 16px;
   font-weight: 600;
   margin-top: 20px;
   transition: background-color 0.3s ease;
-  border-radius: 6px !important; /* Force border radius */
+  border-radius: 50px !important;
 }
 
 .form-btn--submit:hover {
-  background-color: var(--color-primary-hover);
+  background-color: var(--color-btn-hover);
 }
 
 /* ========================
@@ -229,25 +231,4 @@ body {
   .form-container {
     padding: 40px 30px;
   }
-}
-
-/* ========================
-   BROWSER-SPECIFIC FIXES
-   ======================== */
-/* Chrome autofill styles */
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px white inset !important;
-  border-radius: 6px !important;
-}
-
-/* Remove default focus styles from browsers */
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-  box-shadow: none;
 }
